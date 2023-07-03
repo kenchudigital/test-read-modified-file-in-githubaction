@@ -17,3 +17,4 @@ jobs:
         run: |
           git checkout -b new-branch
           git fetch origin main
+          git diff --name-only --diff-filter=d main~ main
