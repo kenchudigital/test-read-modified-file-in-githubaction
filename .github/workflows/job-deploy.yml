@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@2
         with:
-          fetch-depth: 0
-
+          ref: main
+      
       - name: Modified files
         run: |
           git fetch origin main:main
