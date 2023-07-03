@@ -14,4 +14,4 @@ jobs:
           ref: main
 
       - name: List modified files
-        run: git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+        run: git diff --name-only ${{ github.event.before }}..${{ github.sha }}
