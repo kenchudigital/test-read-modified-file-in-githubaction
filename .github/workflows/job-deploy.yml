@@ -13,8 +13,16 @@ jobs:
         with:
           ref: main
       
-      - name: Fetch changes
-        run: git fetch origin main
+      - name: Make changes
+        run: |
+          # Make your desired changes to the 'abc/def.txt' file
+          echo "Example change" >> abc/def.txt
+
+      - name: Stage changes
+        run: git add .
+
+      - name: Commit changes
+        run: git commit -m "Committing changes"
 
       - name: List modified files
-        run: git diff --name-only HEAD
+        run: git diff --name-only HEAD~
