@@ -13,8 +13,8 @@ jobs:
         with:
           ref: main
       
-      - name: Modified files
-        run: |
-          git checkout -b new-branch
-          git fetch origin main
-          git diff --name-only origin/main
+      - name: Fetch changes
+        run: git fetch origin main
+
+      - name: List modified files
+        run: git diff --name-only origin/main
