@@ -15,6 +15,6 @@ jobs:
       
       - name: Modified files
         run: |
-          git checkout -v new-branch
+          git checkout -b new-branch
           git fetch --force origin main:main
           git diff --name-only --diff-filter=d main~ main
