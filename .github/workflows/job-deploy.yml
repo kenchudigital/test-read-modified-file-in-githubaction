@@ -1,7 +1,7 @@
 on:
   push:
-    branches: [ main ]
-
+    branches:
+      - main
 
 jobs:
   get_files:
@@ -12,10 +12,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: main
-          
+
       - name: Retrieve previous commit hash
+        id: get_previous_commit
         run: |
-          PREVIOUS_COMMIT=$(git log -1 --skip=1 --pretty=format:"%H")
+          echo "::set-output name=commit::$(git log -1 --skip=1 --pretty=format:'%H')"
 
       - name: List modified files
-        run: git diff --name-only $PREVIOUS_COMMIT..${{ github.sha }}
+        run: git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }}
