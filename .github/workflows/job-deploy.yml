@@ -27,7 +27,7 @@ jobs:
         run: |
           files=${{ steps.list_files.outputs.files }}
           for file in $files; do
-            if [[ ${file:0:3} == "abc/"* ]]; then
+            if [[ $file == "abc/"* ]]; then
               echo "abc"
               break
             fi
@@ -37,7 +37,7 @@ jobs:
         run: |
           files=${{ steps.list_files.outputs.files }}
           for file in $files; do
-            if [[ ${file:0:3} == "zzz/"* ]]; then
+            if [[ $file == "zzz/"* ]]; then
               echo "zzz"
               break
             fi
