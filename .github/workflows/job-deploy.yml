@@ -26,11 +26,12 @@ jobs:
 
       - name: Check modified files for "abc/"
         run: |
-          files=$files
           for file in $files; do
             if [[ ${file} == "abc/"* ]]; then
               echo "abc"
               break
+            else
+              echo $file
             fi
           done
       
