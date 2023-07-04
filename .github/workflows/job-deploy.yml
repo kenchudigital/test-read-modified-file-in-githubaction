@@ -21,8 +21,9 @@ jobs:
       - name: List modified files
         id: list_files
         run: |
-          echo "files=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})" >> $GITHUB_ENV
-
+          files=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})
+          echo "::set-output name=files::$files"
+          
       - name: Check modified files for "abc/"
         run: |
           files=$files
