@@ -22,24 +22,24 @@ jobs:
         id: list_files
         run: git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }} > modified_files.txt
 
-        - name: List modified files
-  id: list_files
-  run: |
-    git diff --name-only 022eca6f606b56a716070cdd3110489e7bb2487f..590a7a21af882be9eaf33084973979d49f93d9bd > modified_files.txt
+      - name: List modified files
+        id: list_files
+        run: |
+          git diff --name-only 022eca6f606b56a716070cdd3110489e7bb2487f..590a7a21af882be9eaf33084973979d49f93d9bd > modified_files.txt
 
-- name: Check modified files for "abc/"
-  run: |
-    while IFS= read -r file; do
-      if [[ ${file} == "abc/"* ]]; then
-        echo "abc"
-        break
-      else
-        echo $file
-      fi
-    done < modified_files.txt
-  shell: /usr/bin/bash -e
+      - name: Check modified files for "abc/"
+        run: |
+          while IFS= read -r file; do
+            if [[ ${file} == "abc/"* ]]; then
+              echo "abc"
+              break
+            else
+              echo $file
+            fi
+          done < modified_files.txt
+        shell: /usr/bin/bash -e
 
-- name: Echo files again
-  run: |
-    cat modified_files.txt
+      - name: Echo files again
+        run: |
+          cat modified_files.txt
 
