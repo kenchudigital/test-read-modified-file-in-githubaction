@@ -24,16 +24,7 @@ jobs:
           files=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})
           echo "::set-output name=files::$files"
 
-      - name: Check modified files for "abc/"
+      - name: Echo files again
         run: |
-          for file in $files; do
-            if [[ ${file} == "abc/"* ]]; then
-              echo "abc"
-              break
-            else
-              echo $file
-            fi
-          done
-        shell: bash
-      
+          echo $files
 
