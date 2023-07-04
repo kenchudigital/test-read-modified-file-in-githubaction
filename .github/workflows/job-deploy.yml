@@ -32,7 +32,6 @@ jobs:
               echo $file
             fi
           done < modified_files.txt
-        shell: /usr/bin/bash -e
 
       - name: Echo files again
         run: |
