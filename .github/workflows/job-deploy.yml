@@ -20,9 +20,12 @@ jobs:
 
       - name: List modified files
         run: |
-          echo $(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }}) >> $GITHUB_ENV
+          IFS=$'\n' files=($(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }}))
+          for file in "${files[@]}"; do
+            echo "$file"
+          done >> $GITHUB_ENV
 
       - name: echo
         run: |
-          echo ${{ GITHUB_ENV }}
-      
+          echo ${{ env.GITHUB_ENV }}
+            
