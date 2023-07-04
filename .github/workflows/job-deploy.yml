@@ -19,34 +19,8 @@ jobs:
           echo "::set-output name=commit::$(git log -1 --skip=1 --pretty=format:'%H')"
 
       - name: List modified files
-        id: list_files
-        run: |
-          echo "FILES=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})" >> $GITHUB_ENV
+        run: git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }} >> $FILES
 
-      - name: Check modified files for "abc/"
-        run: |
-          files=$FILES
-          for file in $files; do
-            if [[ ${file} == "abc/"* ]]; then
-              echo "abc"
-              break
-            else
-              echo $file
-            fi
-          done
-        shell: /usr/bin/bash -e
-
-      - name: Echo files again
-        run: |
-          echo $FILES
-
-      # - name: List modified files
-      #   id: list_files
-      #   run: |
-      #     files=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})
-      #     echo "::set-output name=files::$files"
-
-      # - name: Echo files again
-      #   run: |
-      #     echo $files
-
+      - name: echo
+        run: echo $FILES
+      
