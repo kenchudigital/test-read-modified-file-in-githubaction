@@ -23,12 +23,12 @@ jobs:
         run: |
           files=$(git diff --name-only ${{ steps.get_previous_commit.outputs.commit }}..${{ github.sha }})
           echo "::set-output name=files::$files"
-          
+
       - name: Check modified files for "abc/"
         run: |
           files=$files
           for file in $files; do
-            if [[ ${file:0:3} == "abc/"* ]]; then
+            if [[ ${file} == "abc/"* ]]; then
               echo "abc"
               break
             fi
